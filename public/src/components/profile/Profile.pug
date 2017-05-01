@@ -1,0 +1,16 @@
+section
+    .profile-head
+    .self-introduction
+        p.self-introduction_p
+        | ちゃぬだよ、モック作成なうだよ
+        br
+        | ここは自己紹介文を書くところ
+    .container
+        .tweets
+            .tweet(v-for="item in items")
+                .tweet-head
+                    a(href="profile")
+                        img.tweet-head_img(:src="item.samune")
+                .tweet-body
+                    p {{item.tweet}}
+                    img(:src="item.content_img")

@@ -1,11 +1,14 @@
 module.exports = {
-    entry: __dirname + "/src/App.vue",
+    entry: __dirname + "/public/src/App.vue",
     output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/public/src',
         filename: 'bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.vue']
+        extensions: ['.js', '.vue'],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
     },
     module: {
         rules: [

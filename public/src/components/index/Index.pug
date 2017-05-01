@@ -1,0 +1,17 @@
+.container
+    .tweets
+        .tweet
+            .tweet-head
+                a(href='/profile')
+                    img.tweet-head_img(src='/img/chanu.jpeg', alt='')
+                h2.tweet-head_h2 ちゃぬ
+            .tweet-body
+                p 今日の朝ごはんは卵焼き
+        .tweet(v-for='item in items')
+            .tweet-head
+                a(href='/profile')
+                    img.tweet-head_img(:src='item.samune', alt='')
+                h2.tweet-head_h2 {{item.name}}
+            .tweet-body
+                p {{item.tweet}}
+                img(:src='item.content_img', alt='')

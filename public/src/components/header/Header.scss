@@ -1,0 +1,97 @@
+header {
+  height: 50px;
+  background: #009999;
+  padding-top: 9px;
+  box-sizing: border-box;
+  position: relative;
+  .timeline {
+    display: block;
+    height: 32px;
+    width: 32px;
+    background: url('/img/home.png');
+    position: absolute;
+    right: 30px;
+  }
+  .me {
+    display: block;
+    height: 32px;
+    width: 32px;
+    background: url('/img/human.png');
+    position: absolute;
+    right: 80px;
+  }
+  .settings {
+    display: block;
+    height: 32px;
+    width: 32px;
+    background: url('/img/settings.png');
+    position: absolute;
+    right: 130px;
+  }
+  .tubuyaki {
+    position: absolute;
+    height: 32px;
+    width: 100px;
+    right: 180px;
+    background: #009999;
+    border: solid 5px #006666;
+    color: #f5f5f5;
+    transition: all 0.5s;
+    letter-spacing: 2px;
+    &:hover {
+      background: #33cccc;
+    }
+  }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.tweet-box {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+
+.tweet-box-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: auto;
+  width: auto;
+  margin-top: -200px;
+  margin-left: -200px;
+}
+
+.tweet-box_textarea {
+  width: 400px;
+  height: 300px;
+  padding: 10px;
+  resize: none;
+  box-sizing: border-box;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.tweet-box-buttons {
+  text-align: right;
+}
+
+.tweet-box_button {
+  height: 32px;
+  width: 100px;
+  background: #009999;
+  border: solid 5px #006666;
+  color: #f5f5f5;
+  letter-spacing: 2px;
+  margin-top:10px;
+}

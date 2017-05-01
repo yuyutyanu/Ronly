@@ -1,0 +1,11 @@
+header
+    a.me(href='/profile')
+    a.timeline(href='/')
+    a.settings(href='/login')
+    button.tubuyaki(@click='show = !show') つぶやく
+    transition(name='fade')
+        .tweet-box(v-if='show')
+            .tweet-box-form
+                textarea.tweet-box_textarea
+                .tweet-box-buttons
+                        button.tweet-box_button(@click='show = !show') つぶやく
