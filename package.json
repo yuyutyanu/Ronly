@@ -12,7 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.2",
+    "mysql": "^2.13.0",
     "pug": "^2.0.0-beta.12",
+    "sequelize": "^3.30.4",
+    "sequelize-cli": "^2.7.0",
     "vue": "^2.3.0"
   },
   "devDependencies": {
