@@ -19,14 +19,6 @@ app.get('/profile',function(req,res){
 })
 
 
-
-
 var db = require('./orm/models/index');
 
 
-db.m_Users.findById(1).then(function(user){
-    console.log(db.hoge)
-    return user.getFollow()
-}).then(function(user){
-    console.log(user[0].follower_id)
-})
