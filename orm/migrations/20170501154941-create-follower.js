@@ -25,6 +25,6 @@ module.exports = {
         });
     },
     down: function (queryInterface, Sequelize) {
-        return queryInterface.dropTable('Followers');
+        return queryInterface.dropTable('t_Followers');
     }
 };

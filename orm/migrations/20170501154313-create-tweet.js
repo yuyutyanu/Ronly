@@ -14,9 +14,6 @@ module.exports = {
             user_id: {
                 type: Sequelize.INTEGER,
             },
-            comment_id: {
-                type: Sequelize.INTEGER,
-            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
@@ -28,6 +25,6 @@ module.exports = {
         });
     },
     down: function (queryInterface, Sequelize) {
-        return queryInterface.dropTable('Tweets');
+        return queryInterface.dropTable('t_Tweets');
     }
 };
