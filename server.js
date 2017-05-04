@@ -1,24 +1,30 @@
 const express = require('express')
 const app = express()
-app.listen(3000)
+const session = require('express-session')
 
-app.use( express.static(__dirname + '/public') )
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    httpOnly:false
+}))
+
+
+app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'pug');
 
+const login = require('./routes/login')
+const index = require('./routes/index')
+const profile = require('./routes/profile')
+const register = require('./routes/register')
 
-app.get('/',function(req,res){
-    res.render(__dirname + '/views/index.pug')
-})
-
-app.get('/login',function(req,res){
-    res.render(__dirname + '/views/login.pug')
-})
-
-app.get('/profile',function(req,res){
-    res.render(__dirname + '/views/profile.pug')
-})
+app.use('/login', login)
+app.use('/', index)
+app.use('/profile', profile)
+app.use('/register', register)
 
 
-var db = require('./orm/models/index');
+
+app.listen(3000)
 
 
