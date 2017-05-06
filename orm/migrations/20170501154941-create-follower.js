@@ -7,12 +7,12 @@ module.exports = {
             follower_id: {
                 allowNull: false,
                 primaryKey: true,
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
             },
             user_id: {
                 allowNull: false,
                 primaryKey: true,
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
             },
             createdAt: {
                 allowNull: false,

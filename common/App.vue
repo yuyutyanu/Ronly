@@ -3,7 +3,7 @@
     import Vue from 'vue';
     import CustomHeader from './components/header/Header'
     import Index from './components/index/Index'
-    import Login from './components/login/Login'
+    import CustomForm from './components/form/Form'
     import Profile from './components/profile/Profile'
 
 
@@ -12,7 +12,7 @@
         components: {
             CustomHeader,
             Index,
-            Login,
+            CustomForm,
             Profile
         }
     });

@@ -13,6 +13,8 @@ module.exports = {
 
         for(var i = 0 ; i<10;i++){
             items.push({
+                id:faker.random.word() + faker.random.number(),
+                name:faker.internet.userName(),
                 profile_message: faker.random.words(),
                 samune: faker.image.image(),
                 password: faker.random.word(),
