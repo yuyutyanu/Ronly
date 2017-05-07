@@ -3,8 +3,8 @@
 
 module.exports = {
     up: function (queryInterface, Sequelize) {
-        return queryInterface.createTable('t_Followers', {
-            follower_id: {
+        return queryInterface.createTable('t_Follows', {
+            follow_id: {
                 allowNull: false,
                 primaryKey: true,
                 type: Sequelize.STRING,
@@ -25,6 +25,6 @@ module.exports = {
         });
     },
     down: function (queryInterface, Sequelize) {
-        return queryInterface.dropTable('t_Followers');
+        return queryInterface.dropTable('t_Follows');
     }
 };

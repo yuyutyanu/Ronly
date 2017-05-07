@@ -10,8 +10,7 @@ module.exports = function (sequelize, DataTypes) {
             classMethods: {
                 associate: function (models) {
                      Users.hasMany(models.t_Tweets)
-                     Users.hasMany(models.t_Followers, {as: 'Follow', foreignKey: 'user_id'})
-                     Users.hasMany(models.t_Followers, {as: 'Follower', foreignKey: 'follower_id'})
+                     Users.hasMany(models.t_Follows, {as: 'Follow', foreignKey: 'user_id'})
                 }
             }
         });

@@ -1,22 +1,60 @@
 //sequelizeの検証
 
 var db = require('./orm/models/index');
+var faker = require('faker')
 
+var hoge = function () {
+    //ユーザ登録
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            db.m_Users
+                .build({
+                    id: faker.random.word() + faker.random.number(),
+                    name: faker.internet.userName(),
+                    profile_message: faker.random.words(),
+                    samune: faker.image.image(),
+                    password: faker.random.word(),
+                })
+                .save()
+                .then(function (savedTask) {
+                    // you can now access the currently saved task with the variable anotherTask... nice!
+                    console.log(1)
+                    console.log(savedTask)
+                    resolve(1)
+                }).catch(function (error) {
+            })
+        }, 1000)
+    })
+}
+hoge().then((data) => {
+    //1人のユーザのtweet取得
+    return new Promise((resolve,reject)=> {
+        setTimeout(() => {
+            db.t_Tweets.findOne({
+                where: {user_id: 'a'},
+                attributes: ['id', 'tweet', 'user_id', 'createdAt', 'updatedAt']
+            }).then((tweet) => {
+                console.log(data + 1)
+                console.log(tweet)
+                resolve(data + 1)
+            })
+        }, 1000)
+    })
+ }).then((data) => {
 
-//IDで検索
-db.m_Users.findById(1).then(function(user){
-    return user.getFollow()
-}).then(function(user){
-    console.log(user[0].follower_id)
-})
-
-//Insert
-db.m_Users
-    .build({ profile_message: 'foo', samune: 'bar' ,password:"hoge"})
-    .save()
-    .then(function(anotherTask) {
-        // you can now access the currently saved task with the variable anotherTask... nice!
-        console.log(anotherTask.id)
-    }).catch(function(error) {
-    // Ooops, do some error-handling
+    //ユーザid a がフォローしてるユーザを取得
+    var follows = []
+    setTimeout(() => {
+        db.m_Users.findById('a').then(function (user) {
+            return user.getFollow()
+        }).then(function (users) {
+            for (var i = 0; i < users.length; i++) {
+                follows.push({follow_id: users[i].follow_id})
+            }
+            return follows
+        }).then(() => {
+            console.log(data+1)
+            console.log(follows)
+        })
+    }, 1000)
 })
