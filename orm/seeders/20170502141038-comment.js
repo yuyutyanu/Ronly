@@ -7,6 +7,7 @@ module.exports = {
 
         for(var i = 0 ; i<10;i++){
             items.push({
+                id:faker.random.word() + faker.random.number(),
                 comment: faker.random.words(),
                 tweet_id: i+1,
                 createdAt: "2017-01-01 19:00:00",

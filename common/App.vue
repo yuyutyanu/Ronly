@@ -6,7 +6,6 @@
     import CustomForm from './components/form/Form'
     import Profile from './components/profile/Profile'
 
-
     const app = new Vue({
         el: '#app',
         components: {

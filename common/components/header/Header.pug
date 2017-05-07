@@ -4,8 +4,8 @@ header
     a.settings(href='/login')
     button.tubuyaki(@click='show = !show') つぶやく
     transition(name='fade')
-        .tweet-box(v-if='show')
+        .tweet-box(@click.self="show = !show" v-if='show')
             .tweet-box-form
-                textarea.tweet-box_textarea
+                textarea.tweet-box_textarea(v-model="text")
                 .tweet-box-buttons
-                        button.tweet-box_button(@click='show = !show') つぶやく
+                        button.tweet-box_button(@click='tweet(),show = !show') つぶやく

@@ -5,7 +5,6 @@ var db = require('./orm/models/index');
 
 //IDで検索
 db.m_Users.findById(1).then(function(user){
-    console.log(db.hoge)
     return user.getFollow()
 }).then(function(user){
     console.log(user[0].follower_id)

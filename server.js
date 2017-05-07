@@ -3,11 +3,12 @@ const session = require('express-session')
 const bodyParser = require('body-parser');
 const multer = require('multer'); // v1.0.5
 const db = require('./orm/models/index')
+global.db = db
 const service = require('./common/service/index')
+global.commonFn = service
 const app = express()
 const upload = multer(); // for parsing multipart/form-data
-global.db = db
-global.commonFn = service
+const co = require('co')
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -34,6 +35,10 @@ app.use('/index', index)
 app.use('/profile', profile)
 app.use('/register', register)
 
+//api
+app.post('/tweet',(req,res)=>{
+    commonFn.create.tweet(req, res)
+})
 app.listen(3000)
 
 

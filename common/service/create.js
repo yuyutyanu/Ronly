@@ -12,7 +12,18 @@ module.exports = {
             .then(function (savedTask) {
                 res.redirect("/login")
             }).catch(function (error) {
-                res.redirect("/register")
+            res.redirect("/register")
         })
+    },
+    tweet: (req, res) => {
+        db.t_Tweets
+            .build({
+                tweet: req.body.text,
+                user_id: req.session.user.id,
+            })
+            .save()
+            .then(function(savedTask){
+                res.send(savedTask)
+            })
     }
 }
