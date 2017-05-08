@@ -3,6 +3,8 @@
 
 <script>
     const axios = require('axios')
+    import event from '../bus'
+    const bus = event.bus
 
     export default{
         data(){
@@ -15,8 +17,11 @@
                 axios.post('/tweet', {
                     text: this.text
                 }).then((data) => {
-                    console.log(data)
+                    bus.$emit('tweet',data)
                 })
+            },
+            hoge:function(){
+
             }
         }
     }

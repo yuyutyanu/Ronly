@@ -6,6 +6,11 @@
     import CustomForm from './components/form/Form'
     import Profile from './components/profile/Profile'
 
+
+    export default {
+        bus:"hoge"
+    }
+
     const app = new Vue({
         el: '#app',
         components: {
@@ -15,6 +20,8 @@
             Profile
         }
     });
+
+
 
 </script>
 

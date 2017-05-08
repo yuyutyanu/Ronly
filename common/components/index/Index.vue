@@ -2,6 +2,9 @@
 
 <script>
     var faker = require('faker');
+    import event from '../bus'
+    const bus = event.bus
+
     export default {
         data(){
             return {
@@ -9,6 +12,7 @@
             }
         },
         created(){
+
             for (var i = 0; i < 20; i++) {
                 console.log()
                 this.items.push({
@@ -18,6 +22,15 @@
                     content_img: faker.image.image()
                 });
             }
+            var _me = this
+            bus.$on('tweet', function (Obj) {
+                _me.items.unshift({
+                    samune: faker.image.image(),
+                    name: faker.name.findName(),
+                    tweet:Obj.data.tweet,
+                    content_img: faker.image.image()
+                })
+            })
         }
     }
 </script>

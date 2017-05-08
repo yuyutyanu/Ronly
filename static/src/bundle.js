@@ -3402,6 +3402,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
+/* harmony default export */ __webpack_exports__["default"] = {
+    bus: "hoge"
+};
+
 const app = new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
     el: '#app',
     components: {
@@ -4285,11 +4289,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(1106);
 //
 //
 //
 
 const axios = __webpack_require__(16);
+
+const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
@@ -4302,9 +4309,10 @@ const axios = __webpack_require__(16);
             axios.post('/tweet', {
                 text: this.text
             }).then(data => {
-                console.log(data);
+                bus.$emit('tweet', data);
             });
-        }
+        },
+        hoge: function () {}
     }
 };
 
@@ -4314,10 +4322,14 @@ const axios = __webpack_require__(16);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(1106);
 //
 //
 
 var faker = __webpack_require__(11);
+
+const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
+
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
         return {
@@ -4325,6 +4337,7 @@ var faker = __webpack_require__(11);
         };
     },
     created() {
+
         for (var i = 0; i < 20; i++) {
             console.log();
             this.items.push({
@@ -4334,6 +4347,15 @@ var faker = __webpack_require__(11);
                 content_img: faker.image.image()
             });
         }
+        var _me = this;
+        bus.$on('tweet', function (Obj) {
+            _me.items.unshift({
+                samune: faker.image.image(),
+                name: faker.name.findName(),
+                tweet: Obj.data.tweet,
+                content_img: faker.image.image()
+            });
+        });
     }
 };
 
@@ -93710,7 +93732,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "tubuyaki",
     on: {
       "click": function($event) {
-        _vm.show = !_vm.show
+        _vm.hoge(), _vm.show = !_vm.show
       }
     }
   }, [_vm._v("つぶやく")]), _c('transition', {
@@ -103785,6 +103807,18 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
+
+/***/ }),
+/* 1106 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1101);
+
+
+/* harmony default export */ __webpack_exports__["a"] = {
+    bus: new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]()
+};
 
 /***/ })
 /******/ ]);

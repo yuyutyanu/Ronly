@@ -2,7 +2,7 @@ header
     a.me(href='/profile')
     a.timeline(href='/index')
     a.settings(href='/login')
-    button.tubuyaki(@click='show = !show') つぶやく
+    button.tubuyaki(@click='hoge(),show = !show') つぶやく
     transition(name='fade')
         .tweet-box(@click.self="show = !show" v-if='show')
             .tweet-box-form
