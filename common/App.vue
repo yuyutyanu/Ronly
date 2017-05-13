@@ -7,9 +7,7 @@
     import Profile from './components/profile/Profile'
 
 
-    export default {
-        bus:"hoge"
-    }
+
 
     const app = new Vue({
         el: '#app',
@@ -20,8 +18,6 @@
             Profile
         }
     });
-
-
 
 </script>
 

@@ -36,9 +36,13 @@ app.use('/profile', profile)
 app.use('/register', register)
 
 //api
+app.get('/tweets',(req,res)=>{
+    commonFn.retrieve.tweet(req,res)
+})
 app.post('/tweet',(req,res)=>{
     commonFn.create.tweet(req, res)
 })
 app.listen(3000)
+
 
 

@@ -3402,10 +3402,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = {
-    bus: "hoge"
-};
-
 const app = new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
     el: '#app',
     components: {
@@ -4289,14 +4285,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(1106);
 //
 //
 //
 
-const axios = __webpack_require__(16);
-
-const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
+const api = __webpack_require__(1108);
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
@@ -4306,13 +4299,8 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
         };
     }, methods: {
         tweet: function () {
-            axios.post('/tweet', {
-                text: this.text
-            }).then(data => {
-                bus.$emit('tweet', data);
-            });
-        },
-        hoge: function () {}
+            api.default.createTweet({ text: this.text });
+        }
     }
 };
 
@@ -4370,7 +4358,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-var faker = __webpack_require__(11);
+var api = __webpack_require__(1108);
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
         return {
@@ -4378,14 +4366,7 @@ var faker = __webpack_require__(11);
         };
     },
     created() {
-        for (var i = 0; i < 20; i++) {
-            console.log();
-            this.items.push({
-                samune: faker.image.imageUrl(),
-                tweet: faker.random.words() + faker.random.words() + faker.random.words() + faker.random.words() + faker.random.words() + faker.random.words(),
-                content_img: faker.image.image()
-            });
-        }
+        api.default.getTweets(this.items);
     }
 };
 
@@ -93732,7 +93713,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "tubuyaki",
     on: {
       "click": function($event) {
-        _vm.hoge(), _vm.show = !_vm.show
+        _vm.show = !_vm.show
       }
     }
   }, [_vm._v("つぶやく")]), _c('transition', {
@@ -103818,6 +103799,40 @@ module.exports = Component.exports
 
 /* harmony default export */ __webpack_exports__["a"] = {
     bus: new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]()
+};
+
+/***/ }),
+/* 1107 */,
+/* 1108 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_bus__ = __webpack_require__(1106);
+var axios = __webpack_require__(16);
+
+const bus = __WEBPACK_IMPORTED_MODULE_0__components_bus__["a" /* default */].bus;
+var faker = __webpack_require__(11);
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    createTweet: function ({ text }) {
+        axios.post('/tweet', {
+            text: text
+        }).then(data => {
+            bus.$emit('tweet', data);
+        });
+    },
+    getTweets: function (items) {
+        axios.get('/tweets').then(obj => {
+            for (var i = 0; i < obj.data.length; i++) {
+                items.push({
+                    samune: faker.image.imageUrl(),
+                    tweet: obj.data[i].tweet,
+                    content_img: faker.image.image()
+                });
+            }
+        });
+    }
 };
 
 /***/ })

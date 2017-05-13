@@ -2,9 +2,8 @@
 </template>
 
 <script>
-    const axios = require('axios')
-    import event from '../bus'
-    const bus = event.bus
+    const api = require('../../api')
+
 
     export default{
         data(){
@@ -13,16 +12,9 @@
                 text: ""
             }
         }, methods: {
-            tweet: function () {
-                axios.post('/tweet', {
-                    text: this.text
-                }).then((data) => {
-                    bus.$emit('tweet',data)
-                })
-            },
-            hoge:function(){
-
-            }
+           tweet:function(){
+               api.default.createTweet({text:this.text})
+           }
         }
     }
 </script>
