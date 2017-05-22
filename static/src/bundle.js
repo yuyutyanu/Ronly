@@ -1341,9 +1341,9 @@ var axios = __webpack_require__(19);
             });
         });
     },
-    getMyTweets: function (items) {
+    getUserTweets: function (id) {
         return new Promise((resolve, reject) => {
-            axios.get('/tweets').then(obj => {
+            axios.get('/users/' + id).then(obj => {
                 resolve(obj);
             });
         });
@@ -13997,7 +13997,8 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
         return {
-            items: []
+            items: [],
+            href: '/profile?id='
         };
     },
     created() {
@@ -14006,6 +14007,7 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
         api.default.getTimeLine().then(function (timeLine) {
             for (var i = 0; i < timeLine.data.length; i++) {
                 _me.items.unshift({
+                    id: timeLine.data[i].id,
                     samune: timeLine.data[i].samune,
                     name: timeLine.data[i].name,
                     tweet: timeLine.data[i].tweet,
@@ -14041,12 +14043,14 @@ var faker = __webpack_require__(13);
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
         return {
-            items: []
+            items: [],
+            id: location.search.slice(4)
         };
     },
     created() {
         var _me = this;
-        api.default.getMyTweets(this.items).then(function (obj) {
+
+        api.default.getUserTweets(_me.id).then(function (obj) {
             for (var i = 0; i < obj.data.t_Tweets.length; i++) {
                 _me.items.push({
                     tweet: obj.data.t_Tweets[i].tweet,
@@ -103281,7 +103285,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "tweet-head"
     }, [_c('a', {
       attrs: {
-        "href": "/profile"
+        "href": _vm.href + item.id
       }
     }, [_c('img', {
       staticClass: "tweet-head_img",
@@ -103307,7 +103311,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "tweet-head"
   }, [_c('a', {
     attrs: {
-      "href": "/profile"
+      "href": "/profile?id=me"
     }
   }, [_c('img', {
     staticClass: "tweet-head_img",
@@ -103373,7 +103377,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('header', [_c('a', {
     staticClass: "me",
     attrs: {
-      "href": "/profile"
+      "href": "/profile?id=me"
     }
   }), _c('a', {
     staticClass: "timeline",

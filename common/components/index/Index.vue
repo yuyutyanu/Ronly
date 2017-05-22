@@ -9,7 +9,8 @@
     export default {
         data(){
             return {
-                items: []
+                items: [],
+                href:'/profile?id='
             }
         },
         created(){
@@ -18,6 +19,7 @@
             api.default.getTimeLine().then(function(timeLine){
                 for (var i = 0; i < timeLine.data.length; i++) {
                     _me.items.unshift({
+                        id:timeLine.data[i].id,
                         samune: timeLine.data[i].samune,
                         name: timeLine.data[i].name,
                         tweet: timeLine.data[i].tweet,

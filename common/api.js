@@ -8,9 +8,9 @@ export default{
             })
         })
     },
-    getMyTweets: function (items) {
+    getUserTweets: function (id) {
         return new Promise((resolve, reject) => {
-            axios.get('/tweets').then((obj) => {
+            axios.get('/users/' + id).then((obj) => {
                 resolve(obj)
             })
         })

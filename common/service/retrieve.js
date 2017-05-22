@@ -53,6 +53,16 @@ module.exports = {
             })
         })
     },
+    profile:(id)=>{
+        return new Promise((resolve, reject) => {
+            db.m_Users.findOne({
+                where: {id:id},
+                include: [{model: db.t_Tweets}]
+            }).then((tweets) => {
+                resolve(tweets)
+            })
+        })
+    },
     timeLine: (req) => {
         var timeLine = [];
 
@@ -63,6 +73,7 @@ module.exports = {
                     for (var i = 0; i < followUsersTweets.length; i++) {
                         for (var j = 0; j < followUsersTweets[i].t_Tweets.length; j++) {
                             timeLine.push({
+                                id: followUsersTweets[i].id,
                                 name: followUsersTweets[i].name,
                                 samune: followUsersTweets[i].samune,
                                 tweet: followUsersTweets[i].t_Tweets[j].tweet,
@@ -75,6 +86,7 @@ module.exports = {
 
                     for (var i = 0; i < myTweets.t_Tweets.length; i++) {
                         timeLine.push({
+                            id:myTweets.id,
                             name: myTweets.name,
                             samune: myTweets.samune,
                             tweet: myTweets.t_Tweets[i].tweet,

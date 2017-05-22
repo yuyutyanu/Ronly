@@ -11,14 +11,14 @@ const upload = multer(); // for parsing multipart/form-data
 const co = require('co')
 
 app.use(bodyParser.json()); // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({extended: true})); // for parsing application/x-www-form-urlencoded
 
 
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: false,
-    httpOnly:false
+    httpOnly: false
 }))
 
 
@@ -36,17 +36,23 @@ app.use('/profile', profile)
 app.use('/register', register)
 
 //api
-app.get('/tweets',(req,res)=>{
-    commonFn.retrieve.myTweets(req,res).then((tweets)=>{
-        res.send(tweets)
-    })
+app.get('/users/:id', (req, res) => {
+    if (req.params.id === 'me') {
+        commonFn.retrieve.myTweets(req).then((tweets) => {
+            res.send(tweets)
+        })
+    }else {
+        commonFn.retrieve.profile(req.params.id).then((tweets)=>{
+            res.send(tweets)
+        })
+    }
 })
-app.post('/tweet',(req,res)=>{
+app.post('/tweet', (req, res) => {
     commonFn.create.tweet(req, res)
 })
 
-app.get('/timeline',(req,res)=>{
-    commonFn.retrieve.timeLine(req).then((timeLine)=>{
+app.get('/timeline', (req, res) => {
+    commonFn.retrieve.timeLine(req).then((timeLine) => {
         res.send(timeLine)
     })
 })

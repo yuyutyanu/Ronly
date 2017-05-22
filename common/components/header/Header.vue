@@ -10,7 +10,7 @@
         data(){
             return {
                 show: false,
-                text: ""
+                text: "",
             }
         }, methods: {
             tweet: function () {
