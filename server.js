@@ -37,11 +37,20 @@ app.use('/register', register)
 
 //api
 app.get('/tweets',(req,res)=>{
-    commonFn.retrieve.tweet(req,res)
+    commonFn.retrieve.myTweets(req,res).then((tweets)=>{
+        res.send(tweets)
+    })
 })
 app.post('/tweet',(req,res)=>{
     commonFn.create.tweet(req, res)
 })
+
+app.get('/timeline',(req,res)=>{
+    commonFn.retrieve.timeLine(req).then((timeLine)=>{
+        res.send(timeLine)
+    })
+})
+
 app.listen(3000)
 
 

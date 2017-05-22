@@ -3,7 +3,8 @@
 
 <script>
     const api = require('../../api')
-
+    import event from '../bus'
+    const bus = event.bus
 
     export default{
         data(){
@@ -12,9 +13,11 @@
                 text: ""
             }
         }, methods: {
-           tweet:function(){
-               api.default.createTweet({text:this.text})
-           }
+            tweet: function () {
+                api.default.createTweet({text: this.text}).then(function(data){
+                  bus.$emit('tweet', data)
+               })
+            }
         }
     }
 </script>

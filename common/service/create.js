@@ -1,12 +1,14 @@
+var faker = require('faker')
+var dt = new Date()
 module.exports = {
     user: (req, res) => {
         db.m_Users
             .build({
                 id: req.body.id,
                 name: req.body.nickname,
-                profile_message: 'foo',
-                samune: 'bar',
-                password: req.body.password
+                profile_message: faker.random.word(),
+                samune: faker.random.image(),
+                password: req.body.password,
             })
             .save()
             .then(function (savedTask) {

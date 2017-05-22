@@ -2,6 +2,7 @@
 
 <script>
     var faker = require('faker');
+    var api = require('./../../api')
     import event from '../bus'
     const bus = event.bus
 
@@ -12,17 +13,20 @@
             }
         },
         created(){
-
-            for (var i = 0; i < 20; i++) {
-                console.log()
-                this.items.push({
-                    samune: faker.image.image(),
-                    name: faker.name.findName(),
-                    tweet: faker.random.words() + faker.random.words() + faker.random.words() + faker.random.words() + faker.random.words() + faker.random.words(),
-                    content_img: faker.image.image()
-                });
-            }
             var _me = this
+
+            api.default.getTimeLine().then(function(timeLine){
+                for (var i = 0; i < timeLine.data.length; i++) {
+                    _me.items.unshift({
+                        samune: timeLine.data[i].samune,
+                        name: timeLine.data[i].name,
+                        tweet: timeLine.data[i].tweet,
+                        content_img: faker.random.image()
+                    });
+                }
+            })
+
+
             bus.$on('tweet', function (Obj) {
                 _me.items.unshift({
                     samune: faker.image.image(),
