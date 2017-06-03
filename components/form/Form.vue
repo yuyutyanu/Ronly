@@ -2,6 +2,7 @@
 
 <script>
     export default {
+        props:["register"],
         data(){
             return {
                 location: "login",
@@ -9,7 +10,7 @@
             }
         },
         created: function () {
-            if (window.location.pathname === "/register") {
+            if (this.register === "true") {
                 this.location = "register"
                 this.register = true
             }

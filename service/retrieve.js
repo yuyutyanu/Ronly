@@ -1,4 +1,4 @@
-const db = require('.././models/index')
+const db = require('./../sequelize/models/index')
 global.db = db
 
 module.exports = {

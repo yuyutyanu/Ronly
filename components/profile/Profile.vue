@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    var api = require('../../../api')
+    var api = require('./../../api')
     var faker = require('faker');
     export default {
         data(){

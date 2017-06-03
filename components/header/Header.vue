@@ -2,7 +2,7 @@
 </template>
 
 <script>
-    const api = require('../../../api')
+    const api = require('./../../api')
     import event from '../bus'
     const bus = event.bus
 
