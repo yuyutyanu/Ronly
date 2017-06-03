@@ -2,9 +2,9 @@ const express = require('express')
 const session = require('express-session')
 const bodyParser = require('body-parser');
 const multer = require('multer'); // v1.0.5
-const db = require('./orm/models/index')
+const db = require('./sequelize/models/index')
 global.db = db
-const service = require('./common/service/index')
+const service = require('./service/index')
 global.commonFn = service
 const app = express()
 const upload = multer(); // for parsing multipart/form-data
@@ -22,7 +22,7 @@ app.use(session({
 }))
 
 
-app.use(express.static(__dirname + '/static'))
+app.use(express.static(__dirname + '/public'))
 app.set('view engine', 'pug');
 
 const login = require('./routes/login')

@@ -1,4 +1,4 @@
-const db = require('../../orm/models/index')
+const db = require('.././models/index')
 global.db = db
 
 module.exports = {

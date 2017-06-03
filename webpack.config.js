@@ -1,7 +1,7 @@
 module.exports = {
     entry: __dirname + "/common/App.vue",
     output: {
-        path: __dirname + '/static/src',
+        path: __dirname + '/public/src',
         filename: 'bundle.js'
     },
     resolve: {

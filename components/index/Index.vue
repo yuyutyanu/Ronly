@@ -2,7 +2,7 @@
 
 <script>
     var faker = require('faker');
-    var api = require('./../../api')
+    var api = require('./../../../api')
     import event from '../bus'
     const bus = event.bus
 

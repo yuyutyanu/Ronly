@@ -1,8 +1,8 @@
 //sequelizeの検証
 
-var db = require('./orm/models/index');
+var db = require('./sequelize/models/index');
 var faker = require('faker')
-const service = require('./common/service/index')
+const service = require('./service/index')
 global.commonFn = service
 
 var hoge = function () {
