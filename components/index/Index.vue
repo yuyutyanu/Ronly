@@ -14,18 +14,19 @@
         },
         created(){
             var _me = this
-
-            api.default.getTimeLine().then(function(timeLine){
-                for (var i = 0; i < timeLine.data.length; i++) {
-                    _me.items.unshift({
-                        id:timeLine.data[i].id,
-                        samune: timeLine.data[i].samune,
-                        name: timeLine.data[i].name,
-                        tweet: timeLine.data[i].tweet,
-                    });
-                }
-            })
-
+            var getTimeLine = function(){
+                api.default.getTimeLine().then(function(timeLine){
+                    for (var i = 0; i < timeLine.data.length; i++) {
+                        _me.items.unshift({
+                            id:timeLine.data[i].id,
+                            samune: timeLine.data[i].samune,
+                            name: timeLine.data[i].name,
+                            tweet: timeLine.data[i].tweet,
+                        });
+                    }
+                })
+            }
+            getTimeLine()
 
             bus.$on('tweet', function (Obj) {
                 _me.items.unshift({
@@ -34,6 +35,13 @@
                     tweet:Obj.data.tweet,
                     content_img: faker.image.image()
                 })
+            })
+
+            bus.$on('createFollow', function (){
+                getTimeLine();
+            })
+            bus.$on('deleteFollow', function () {
+                getTimeLine();
             })
         }
     }

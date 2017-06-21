@@ -29,6 +29,7 @@ app.set('view engine', 'pug');
 //api
 app.get('/users', (req, res) => {
     commonFn.retrieve.timeLine(req).then((timeLine) => {
+        console.log(timeLine)
         res.send(timeLine)
     })
 })
