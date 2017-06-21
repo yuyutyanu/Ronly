@@ -3,14 +3,16 @@ global.db = db
 
 module.exports = {
     user: (req, res) => {
-        db.m_Users.findOne({
-            where: {
-                id: req.session.user.id
-            }
-        })
-            .then((user) => {
-                res.send(user)
+        return new Promise((resolve, reject) => {
+            db.m_Users.findOne({
+                where: {
+                    id: req.session.user.id
+                }
             })
+                .then((user) => {
+                   resolve(user)
+                })
+        })
     },
     myTweets: (req) => {
         return new Promise((resolve, reject) => {

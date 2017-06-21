@@ -29,11 +29,11 @@
             getTimeLine()
 
             bus.$on('tweet', function (Obj) {
+                console.log(Obj)
                 _me.items.unshift({
-                    samune: faker.image.image(),
-                    name: faker.name.findName(),
+                    samune: Obj.data.samune,
+                    name: Obj.data.name,
                     tweet:Obj.data.tweet,
-                    content_img: faker.image.image()
                 })
             })
 

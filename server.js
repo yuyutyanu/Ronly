@@ -29,7 +29,6 @@ app.set('view engine', 'pug');
 //api
 app.get('/users', (req, res) => {
     commonFn.retrieve.timeLine(req).then((timeLine) => {
-        console.log(timeLine)
         res.send(timeLine)
     })
 })
@@ -49,7 +48,6 @@ app.post('/tweet', (req, res) => {
 })
 
 app.post('/follow', (req) =>{
-    console.log(req.body)
     commonFn.create.followUser(req)
 })
 app.delete('/follow/:id',(req) =>{

@@ -56,7 +56,6 @@ var hoge = function () {
             }
         }).then(() => {
             for (var i = 0; i < follows.length; i++) {
-                console.log(follows[i].follow_id)
                 db.m_Users.findOne({
                     where: {id: follows[i].follow_id},
                     include: [{model: db.t_Tweets}]

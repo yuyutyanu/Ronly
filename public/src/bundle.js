@@ -14036,11 +14036,11 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
         getTimeLine();
 
         bus.$on('tweet', function (Obj) {
+            console.log(Obj);
             _me.items.unshift({
-                samune: faker.image.image(),
-                name: faker.name.findName(),
-                tweet: Obj.data.tweet,
-                content_img: faker.image.image()
+                samune: Obj.data.samune,
+                name: Obj.data.name,
+                tweet: Obj.data.tweet
             });
         });
 

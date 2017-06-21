@@ -25,7 +25,15 @@ module.exports = {
             })
             .save()
             .then(function (savedTask) {
-                res.send(savedTask)
+                commonFn.retrieve.user(req,res).then((data)=>{
+                    var tweet = {
+                            tweet:savedTask.tweet,
+                            name:data.name,
+                            samune:data.samune
+                    }
+
+                    res.send(tweet)
+                })
             })
     },
     followUser: (req) => {
