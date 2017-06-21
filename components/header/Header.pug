@@ -1,11 +1,12 @@
 header
-    a.me(href="/profile?id=me")
-    a.timeline(href='/index')
-    a.settings(href='/login')
+    input.search(type="text" placeholder="ユーザ検索")
     button.tubuyaki(@click='show = !show') つぶやく
+    a.me(href="/id")
+    a.timeline(href='/')
+    a.settings(href='/login')
     transition(name='fade')
         .tweet-box(@click.self="show = !show" v-if='show')
             .tweet-box-form
                 textarea.tweet-box_textarea(v-model="text")
                 .tweet-box-buttons
-                        button.tweet-box_button(@click='tweet(),show = !show') つぶやく
+                    button.tweet-box_button(@click='tweet(),show = !show') つぶやく

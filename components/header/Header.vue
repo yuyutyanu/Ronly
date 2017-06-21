@@ -11,6 +11,7 @@
             return {
                 show: false,
                 text: "",
+                id:"me"
             }
         }, methods: {
             tweet: function () {

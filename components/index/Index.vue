@@ -10,7 +10,6 @@
         data(){
             return {
                 items: [],
-                href:'/profile?id='
             }
         },
         created(){
@@ -23,7 +22,6 @@
                         samune: timeLine.data[i].samune,
                         name: timeLine.data[i].name,
                         tweet: timeLine.data[i].tweet,
-                        content_img: faker.random.image()
                     });
                 }
             })

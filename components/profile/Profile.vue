@@ -9,7 +9,7 @@
         data(){
             return {
                 items: [],
-                id:location.search.slice(4)
+                id:"me"
             }
         },
         created(){
@@ -18,8 +18,7 @@
             api.default.getUserTweets(_me.id).then(function(obj){
                 for (var i = 0; i < obj.data.t_Tweets.length; i++) {
                     _me.items.push({
-                        tweet: obj.data.t_Tweets[i].tweet,
-                        content_img: faker.image.image()
+                        tweet: obj.data.t_Tweets[i].tweet
                     });
                 }
             })

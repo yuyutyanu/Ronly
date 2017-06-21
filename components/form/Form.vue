@@ -2,7 +2,7 @@
 
 <script>
     export default {
-        props:["register"],
+        props:["mode"],
         data(){
             return {
                 location: "login",
@@ -10,7 +10,7 @@
             }
         },
         created: function () {
-            if (this.register === "true") {
+            if (this.mode === "register") {
                 this.location = "register"
                 this.register = true
             }

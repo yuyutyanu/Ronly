@@ -15,7 +15,7 @@ module.exports = {
         }).then((user) => {
             req.session.user = {id: user.id}
         }).then(() => {
-            res.redirect("/index")
+            res.redirect("/")
         }).catch(function (err) {
             res.redirect("/login")
         });

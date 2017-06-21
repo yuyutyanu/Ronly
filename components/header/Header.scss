@@ -3,41 +3,39 @@ header {
   background: #009999;
   padding-top: 9px;
   box-sizing: border-box;
-  position: relative;
+  display:flex;
+  justify-content: flex-end;
+  .search{
+    width:400px;
+    height:30px;
+  }
   .timeline {
-    display: block;
+    margin-left:15px;
     height: 32px;
     width: 32px;
     background: url('/img/home.png');
-    position: absolute;
-    right: 30px;
   }
   .me {
-    display: block;
+    margin-left:15px;
     height: 32px;
     width: 32px;
     background: url('/img/human.png');
-    position: absolute;
-    right: 80px;
   }
   .settings {
-    display: block;
+    margin-right:15px;
+    margin-left:15px;
     height: 32px;
     width: 32px;
     background: url('/img/settings.png');
-    position: absolute;
-    right: 130px;
   }
   .tubuyaki {
-    position: absolute;
     height: 32px;
     width: 100px;
-    right: 180px;
     background: #009999;
     border: solid 5px #006666;
     color: #f5f5f5;
-    transition: all 0.5s;
     letter-spacing: 2px;
+    margin-left:30px;
   }
 }
 

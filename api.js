@@ -18,7 +18,7 @@ export default{
     getTimeLine: function () {
 
         return new Promise((resolve, reject) => {
-            axios.get('/timeline').then((obj) => {
+            axios.get('/users').then((obj) => {
                 resolve(obj)
             })
         })

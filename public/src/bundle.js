@@ -73,7 +73,7 @@
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(11);
 
 /*global toString:true*/
 
@@ -384,7 +384,7 @@ module.exports = {
   trim: trim
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17).Buffer))
 
 /***/ }),
 /* 1 */
@@ -549,7 +549,7 @@ function toComment(sourceMap) {
   return '/*# ' + data + ' */';
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(17).Buffer))
 
 /***/ }),
 /* 3 */
@@ -780,7 +780,7 @@ function applyToTag (styleElement, obj) {
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(33);
+var normalizeHeaderName = __webpack_require__(34);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -796,10 +796,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(7);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(7);
   }
   return adapter;
 }
@@ -870,10 +870,43 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
 /* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var axios = __webpack_require__(19);
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    createTweet: function ({ text }) {
+        return new Promise((resolve, reject) => {
+            axios.post('/tweet', { text: text }).then(data => {
+                resolve(data);
+            });
+        });
+    },
+    getUserTweets: function (id) {
+        return new Promise((resolve, reject) => {
+            axios.get('/users/' + id).then(obj => {
+                resolve(obj);
+            });
+        });
+    },
+    getTimeLine: function () {
+
+        return new Promise((resolve, reject) => {
+            axios.get('/users').then(obj => {
+                resolve(obj);
+            });
+        });
+    }
+};
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1059,19 +1092,19 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(25);
-var buildURL = __webpack_require__(28);
-var parseHeaders = __webpack_require__(34);
-var isURLSameOrigin = __webpack_require__(32);
-var createError = __webpack_require__(9);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(27);
+var settle = __webpack_require__(26);
+var buildURL = __webpack_require__(29);
+var parseHeaders = __webpack_require__(35);
+var isURLSameOrigin = __webpack_require__(33);
+var createError = __webpack_require__(10);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(28);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -1167,7 +1200,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(30);
+      var cookies = __webpack_require__(31);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -1243,10 +1276,10 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1272,7 +1305,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1284,13 +1317,13 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(24);
+var enhanceError = __webpack_require__(25);
 
 /**
  * Create an Error with the specified message, config, error code, and response.
@@ -1308,7 +1341,7 @@ module.exports = function createError(message, config, code, response) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1326,11 +1359,11 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(15);
 
 
 /* harmony default export */ __webpack_exports__["a"] = {
@@ -1338,7 +1371,7 @@ module.exports = function bind(fn, thisArg) {
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // since we are requiring the top level of faker, load all locales by default
@@ -1347,7 +1380,7 @@ var faker = new Faker({ locales: __webpack_require__(58) });
 module['exports'] = faker;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var mersenne = __webpack_require__(1089);
@@ -1568,7 +1601,7 @@ module['exports'] = Random;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11190,10 +11223,10 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["a"] = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(5), __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(6), __webpack_require__(16)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 var g;
@@ -11220,7 +11253,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13014,15 +13047,15 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__header_Header__ = __webpack_require__(1092);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__header_Header___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__header_Header__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index_Index__ = __webpack_require__(1093);
@@ -13050,21 +13083,21 @@ const app = new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 });
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19);
+module.exports = __webpack_require__(20);
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(10);
-var Axios = __webpack_require__(21);
+var bind = __webpack_require__(11);
+var Axios = __webpack_require__(22);
 var defaults = __webpack_require__(4);
 
 /**
@@ -13098,15 +13131,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(7);
-axios.CancelToken = __webpack_require__(20);
-axios.isCancel = __webpack_require__(8);
+axios.Cancel = __webpack_require__(8);
+axios.CancelToken = __webpack_require__(21);
+axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(35);
+axios.spread = __webpack_require__(36);
 
 module.exports = axios;
 
@@ -13115,13 +13148,13 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(7);
+var Cancel = __webpack_require__(8);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -13179,7 +13212,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13187,10 +13220,10 @@ module.exports = CancelToken;
 
 var defaults = __webpack_require__(4);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(22);
-var dispatchRequest = __webpack_require__(23);
-var isAbsoluteURL = __webpack_require__(31);
-var combineURLs = __webpack_require__(29);
+var InterceptorManager = __webpack_require__(23);
+var dispatchRequest = __webpack_require__(24);
+var isAbsoluteURL = __webpack_require__(32);
+var combineURLs = __webpack_require__(30);
 
 /**
  * Create a new instance of Axios
@@ -13271,7 +13304,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13330,15 +13363,15 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(26);
-var isCancel = __webpack_require__(8);
+var transformData = __webpack_require__(27);
+var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(4);
 
 /**
@@ -13416,7 +13449,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13442,13 +13475,13 @@ module.exports = function enhanceError(error, config, code, response) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -13474,7 +13507,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13501,7 +13534,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13544,7 +13577,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13619,7 +13652,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13640,7 +13673,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13700,7 +13733,7 @@ module.exports = (
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13721,7 +13754,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13796,7 +13829,7 @@ module.exports = (
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13815,7 +13848,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13859,7 +13892,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13893,39 +13926,6 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 36 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var axios = __webpack_require__(18);
-
-/* harmony default export */ __webpack_exports__["default"] = {
-    createTweet: function ({ text }) {
-        return new Promise((resolve, reject) => {
-            axios.post('/tweet', { text: text }).then(data => {
-                resolve(data);
-            });
-        });
-    },
-    getUserTweets: function (id) {
-        return new Promise((resolve, reject) => {
-            axios.get('/users/' + id).then(obj => {
-                resolve(obj);
-            });
-        });
-    },
-    getTimeLine: function () {
-
-        return new Promise((resolve, reject) => {
-            axios.get('/timeline').then(obj => {
-                resolve(obj);
-            });
-        });
-    }
-};
-
-/***/ }),
 /* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -13935,7 +13935,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = {
-    props: ["register"],
+    props: ["mode"],
     data() {
         return {
             location: "login",
@@ -13943,7 +13943,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     created: function () {
-        if (this.register === "true") {
+        if (this.mode === "register") {
             this.location = "register";
             this.register = true;
         }
@@ -13956,12 +13956,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(12);
 //
 //
 //
 
-const api = __webpack_require__(36);
+const api = __webpack_require__(5);
 
 const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
 
@@ -13969,7 +13969,8 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
     data() {
         return {
             show: false,
-            text: ""
+            text: "",
+            id: "me"
         };
     }, methods: {
         tweet: function () {
@@ -13986,20 +13987,19 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__bus__ = __webpack_require__(12);
 //
 //
 
-var faker = __webpack_require__(12);
-var api = __webpack_require__(36);
+var faker = __webpack_require__(13);
+var api = __webpack_require__(5);
 
 const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
         return {
-            items: [],
-            href: '/profile?id='
+            items: []
         };
     },
     created() {
@@ -14011,8 +14011,7 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
                     id: timeLine.data[i].id,
                     samune: timeLine.data[i].samune,
                     name: timeLine.data[i].name,
-                    tweet: timeLine.data[i].tweet,
-                    content_img: faker.random.image()
+                    tweet: timeLine.data[i].tweet
                 });
             }
         });
@@ -14039,13 +14038,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-var api = __webpack_require__(36);
-var faker = __webpack_require__(12);
+var api = __webpack_require__(5);
+var faker = __webpack_require__(13);
 /* harmony default export */ __webpack_exports__["default"] = {
     data() {
         return {
             items: [],
-            id: location.search.slice(4)
+            id: "me"
         };
     },
     created() {
@@ -14054,8 +14053,7 @@ var faker = __webpack_require__(12);
         api.default.getUserTweets(_me.id).then(function (obj) {
             for (var i = 0; i < obj.data.t_Tweets.length; i++) {
                 _me.items.push({
-                    tweet: obj.data.t_Tweets[i].tweet,
-                    content_img: faker.image.image()
+                    tweet: obj.data.t_Tweets[i].tweet
                 });
             }
         });
@@ -14085,7 +14083,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nheader[data-v-407cd1fb] {\n  height: 50px;\n  background: #009999;\n  padding-top: 9px;\n  box-sizing: border-box;\n  position: relative;\n}\nheader .timeline[data-v-407cd1fb] {\n    display: block;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/home.png\");\n    position: absolute;\n    right: 30px;\n}\nheader .me[data-v-407cd1fb] {\n    display: block;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/human.png\");\n    position: absolute;\n    right: 80px;\n}\nheader .settings[data-v-407cd1fb] {\n    display: block;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/settings.png\");\n    position: absolute;\n    right: 130px;\n}\nheader .tubuyaki[data-v-407cd1fb] {\n    position: absolute;\n    height: 32px;\n    width: 100px;\n    right: 180px;\n    background: #009999;\n    border: solid 5px #006666;\n    color: #f5f5f5;\n    transition: all 0.5s;\n    letter-spacing: 2px;\n}\n.fade-enter-active[data-v-407cd1fb], .fade-leave-active[data-v-407cd1fb] {\n  transition: opacity 0.3s;\n}\n.fade-enter[data-v-407cd1fb], .fade-leave-to[data-v-407cd1fb] {\n  opacity: 0;\n}\n.tweet-box[data-v-407cd1fb] {\n  position: fixed;\n  left: 0;\n  top: 0;\n  height: 100vh;\n  width: 100%;\n  background: rgba(255, 255, 255, 0.7);\n  z-index: 1;\n}\n.tweet-box-form[data-v-407cd1fb] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: auto;\n  width: auto;\n  margin-top: -200px;\n  margin-left: -200px;\n}\n.tweet-box_textarea[data-v-407cd1fb] {\n  width: 400px;\n  height: 300px;\n  padding: 10px;\n  resize: none;\n  box-sizing: border-box;\n  border-radius: 5px;\n  font-size: 15px;\n}\n.tweet-box-buttons[data-v-407cd1fb] {\n  text-align: right;\n}\n.tweet-box_button[data-v-407cd1fb] {\n  height: 32px;\n  width: 100px;\n  background: #009999;\n  border: solid 5px #006666;\n  color: #f5f5f5;\n  letter-spacing: 2px;\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, "\nheader[data-v-407cd1fb] {\n  height: 50px;\n  background: #009999;\n  padding-top: 9px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: flex-end;\n}\nheader .search[data-v-407cd1fb] {\n    width: 400px;\n    height: 30px;\n}\nheader .timeline[data-v-407cd1fb] {\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/home.png\");\n}\nheader .me[data-v-407cd1fb] {\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/human.png\");\n}\nheader .settings[data-v-407cd1fb] {\n    margin-right: 15px;\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/settings.png\");\n}\nheader .tubuyaki[data-v-407cd1fb] {\n    height: 32px;\n    width: 100px;\n    background: #009999;\n    border: solid 5px #006666;\n    color: #f5f5f5;\n    letter-spacing: 2px;\n    margin-left: 30px;\n}\n.fade-enter-active[data-v-407cd1fb], .fade-leave-active[data-v-407cd1fb] {\n  transition: opacity 0.3s;\n}\n.fade-enter[data-v-407cd1fb], .fade-leave-to[data-v-407cd1fb] {\n  opacity: 0;\n}\n.tweet-box[data-v-407cd1fb] {\n  position: fixed;\n  left: 0;\n  top: 0;\n  height: 100vh;\n  width: 100%;\n  background: rgba(255, 255, 255, 0.7);\n  z-index: 1;\n}\n.tweet-box-form[data-v-407cd1fb] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: auto;\n  width: auto;\n  margin-top: -200px;\n  margin-left: -200px;\n}\n.tweet-box_textarea[data-v-407cd1fb] {\n  width: 400px;\n  height: 300px;\n  padding: 10px;\n  resize: none;\n  box-sizing: border-box;\n  border-radius: 5px;\n  font-size: 15px;\n}\n.tweet-box-buttons[data-v-407cd1fb] {\n  text-align: right;\n}\n.tweet-box_button[data-v-407cd1fb] {\n  height: 32px;\n  width: 100px;\n  background: #009999;\n  border: solid 5px #006666;\n  color: #f5f5f5;\n  letter-spacing: 2px;\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -16922,7 +16920,7 @@ function Faker (opts) {
   var Fake = __webpack_require__(50);
   self.fake = new Fake(self).fake;
 
-  var Random = __webpack_require__(13);
+  var Random = __webpack_require__(14);
   self.random = bindAll(new Random(self));
 
   var Helpers = __webpack_require__(53);
@@ -17015,7 +17013,7 @@ function Faker (opts) {
 };
 
 Faker.prototype.seed = function(value) {
-  var Random = __webpack_require__(13);
+  var Random = __webpack_require__(14);
   this.seedValue = value;
   this.random = new Random(this, this.seedValue);
 }
@@ -103274,20 +103272,11 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('header', [_c('a', {
-    staticClass: "me",
+  return _c('header', [_c('input', {
+    staticClass: "search",
     attrs: {
-      "href": "/profile?id=me"
-    }
-  }), _c('a', {
-    staticClass: "timeline",
-    attrs: {
-      "href": "/index"
-    }
-  }), _c('a', {
-    staticClass: "settings",
-    attrs: {
-      "href": "/login"
+      "type": "text",
+      "placeholder": "ユーザ検索"
     }
   }), _c('button', {
     staticClass: "tubuyaki",
@@ -103296,7 +103285,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.show = !_vm.show
       }
     }
-  }, [_vm._v("つぶやく")]), _c('transition', {
+  }, [_vm._v("つぶやく")]), _c('a', {
+    staticClass: "me",
+    attrs: {
+      "href": "/id"
+    }
+  }), _c('a', {
+    staticClass: "timeline",
+    attrs: {
+      "href": "/"
+    }
+  }), _c('a', {
+    staticClass: "settings",
+    attrs: {
+      "href": "/login"
+    }
+  }), _c('transition', {
     attrs: {
       "name": "fade"
     }
@@ -103399,7 +103403,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "tweet-head"
     }, [_c('a', {
       attrs: {
-        "href": _vm.href + item.id
+        "href": item.id
       }
     }, [_c('img', {
       staticClass: "tweet-head_img",
@@ -103411,12 +103415,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "tweet-head_h2"
     }, [_vm._v(_vm._s(item.name))])]), _c('div', {
       staticClass: "tweet-body"
-    }, [_c('p', [_vm._v(_vm._s(item.tweet))]), _c('img', {
-      attrs: {
-        "src": item.content_img,
-        "alt": ""
-      }
-    })])])
+    }, [_c('p', [_vm._v(_vm._s(item.tweet))])])])
   })], 2)])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
@@ -103425,7 +103424,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "tweet-head"
   }, [_c('a', {
     attrs: {
-      "href": "/profile?id=me"
+      "href": "me"
     }
   }, [_c('img', {
     staticClass: "tweet-head_img",
@@ -103813,7 +103812,7 @@ module.exports = Array.isArray || function (arr) {
 var disposed = false
 var Component = __webpack_require__(1)(
   /* script */
-  __webpack_require__(17),
+  __webpack_require__(18),
   /* template */
   null,
   /* styles */
