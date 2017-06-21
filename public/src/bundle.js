@@ -14070,12 +14070,12 @@ var faker = __webpack_require__(13);
     data() {
         return {
             items: [],
-            id: "me"
+            id: null
         };
     },
     created() {
         var _me = this;
-
+        _me.id = location.pathname.split('/')[1];
         api.default.getUserTweets(_me.id).then(function (obj) {
             for (var i = 0; i < obj.data.t_Tweets.length; i++) {
                 _me.items.push({
