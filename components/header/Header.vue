@@ -11,13 +11,20 @@
             return {
                 show: false,
                 text: "",
-                id:"me"
+                id:"me",
+                follow_id:""
             }
         }, methods: {
             tweet: function () {
                 api.default.createTweet({text: this.text}).then(function(data){
                   bus.$emit('tweet', data)
                })
+            },
+            createFollow:function(){
+                api.default.createFollowUser({follow_id:this.follow_id})
+            },
+            deleteFollow:function(){
+                api.default.deleteFollowUser({follow_id:this.follow_id})
             }
         }
     }

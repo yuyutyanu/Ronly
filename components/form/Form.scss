@@ -1,16 +1,10 @@
 .custom-form {
-  background: #2C5379;
   border: solid 15px #009999;
   width: 500px;
-  height: auto;
   padding-bottom:30px;
   text-align: center;
   transition: all 0.5s;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-top: -200px;
-  margin-left: -265px;
+  margin:100px auto;
   input {
     margin-top: 50px;
     height: 30px;

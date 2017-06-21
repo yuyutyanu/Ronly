@@ -47,6 +47,14 @@ app.post('/tweet', (req, res) => {
     commonFn.create.tweet(req, res)
 })
 
+app.post('/follow', (req) =>{
+    console.log(req.body)
+    commonFn.create.followUser(req)
+})
+app.delete('/follow/:id',(req) =>{
+    commonFn.dele.followUser(req)
+})
+
 const login = require('./routes/login')
 const index = require('./routes/index')
 const profile = require('./routes/profile')

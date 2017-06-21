@@ -55,7 +55,7 @@ body {
 
 .container {
     width: 1300px;
-    margin: 30px auto;
+    margin: 0 auto;
 }
 
 #app {

@@ -902,6 +902,14 @@ var axios = __webpack_require__(19);
                 resolve(obj);
             });
         });
+    },
+    createFollowUser: function ({ follow_id }) {
+        return new Promise((resolve, reject) => {
+            axios.post('/follow', { follow_id: follow_id });
+        });
+    },
+    deleteFollowUser: function ({ follow_id }) {
+        axios.delete('/follow/' + follow_id);
     }
 };
 
@@ -13970,13 +13978,20 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
         return {
             show: false,
             text: "",
-            id: "me"
+            id: "me",
+            follow_id: ""
         };
     }, methods: {
         tweet: function () {
             api.default.createTweet({ text: this.text }).then(function (data) {
                 bus.$emit('tweet', data);
             });
+        },
+        createFollow: function () {
+            api.default.createFollowUser({ follow_id: this.follow_id });
+        },
+        deleteFollow: function () {
+            api.default.deleteFollowUser({ follow_id: this.follow_id });
         }
     }
 };
@@ -14069,7 +14084,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.custom-form[data-v-3628d24a] {\n  background: #2C5379;\n  border: solid 15px #009999;\n  width: 500px;\n  height: auto;\n  padding-bottom: 30px;\n  text-align: center;\n  transition: all 0.5s;\n  position: absolute;\n  left: 50%;\n  top: 50%;\n  margin-top: -200px;\n  margin-left: -265px;\n}\n.custom-form input[data-v-3628d24a] {\n    margin-top: 50px;\n    height: 30px;\n    font-size: 15px;\n    width: 250px;\n    border: solid 5px #006666;\n}\n.custom-form button[data-v-3628d24a] {\n    display: block;\n    margin: 0 auto;\n    padding: 7px;\n    color: #f5f5f5;\n    box-sizing: border-box;\n    margin-top: 50px;\n    background: #009999;\n    border: solid 5px #006666;\n    transition: all 0.5s;\n    letter-spacing: 2px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-form[data-v-3628d24a] {\n  border: solid 15px #009999;\n  width: 500px;\n  padding-bottom: 30px;\n  text-align: center;\n  transition: all 0.5s;\n  margin: 100px auto;\n}\n.custom-form input[data-v-3628d24a] {\n    margin-top: 50px;\n    height: 30px;\n    font-size: 15px;\n    width: 250px;\n    border: solid 5px #006666;\n}\n.custom-form button[data-v-3628d24a] {\n    display: block;\n    margin: 0 auto;\n    padding: 7px;\n    color: #f5f5f5;\n    box-sizing: border-box;\n    margin-top: 50px;\n    background: #009999;\n    border: solid 5px #006666;\n    transition: all 0.5s;\n    letter-spacing: 2px;\n}\n", ""]);
 
 // exports
 
@@ -14083,7 +14098,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\nheader[data-v-407cd1fb] {\n  height: 50px;\n  background: #009999;\n  padding-top: 9px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: flex-end;\n}\nheader .search[data-v-407cd1fb] {\n    width: 400px;\n    height: 30px;\n}\nheader .timeline[data-v-407cd1fb] {\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/home.png\");\n}\nheader .me[data-v-407cd1fb] {\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/human.png\");\n}\nheader .settings[data-v-407cd1fb] {\n    margin-right: 15px;\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/settings.png\");\n}\nheader .tubuyaki[data-v-407cd1fb] {\n    height: 32px;\n    width: 100px;\n    background: #009999;\n    border: solid 5px #006666;\n    color: #f5f5f5;\n    letter-spacing: 2px;\n    margin-left: 30px;\n}\n.fade-enter-active[data-v-407cd1fb], .fade-leave-active[data-v-407cd1fb] {\n  transition: opacity 0.3s;\n}\n.fade-enter[data-v-407cd1fb], .fade-leave-to[data-v-407cd1fb] {\n  opacity: 0;\n}\n.tweet-box[data-v-407cd1fb] {\n  position: fixed;\n  left: 0;\n  top: 0;\n  height: 100vh;\n  width: 100%;\n  background: rgba(255, 255, 255, 0.7);\n  z-index: 1;\n}\n.tweet-box-form[data-v-407cd1fb] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: auto;\n  width: auto;\n  margin-top: -200px;\n  margin-left: -200px;\n}\n.tweet-box_textarea[data-v-407cd1fb] {\n  width: 400px;\n  height: 300px;\n  padding: 10px;\n  resize: none;\n  box-sizing: border-box;\n  border-radius: 5px;\n  font-size: 15px;\n}\n.tweet-box-buttons[data-v-407cd1fb] {\n  text-align: right;\n}\n.tweet-box_button[data-v-407cd1fb] {\n  height: 32px;\n  width: 100px;\n  background: #009999;\n  border: solid 5px #006666;\n  color: #f5f5f5;\n  letter-spacing: 2px;\n  margin-top: 10px;\n}\n", ""]);
+exports.push([module.i, "\nheader[data-v-407cd1fb] {\n  height: 50px;\n  background: #009999;\n  padding-top: 9px;\n  box-sizing: border-box;\n  display: flex;\n  justify-content: flex-end;\n}\nheader .timeline[data-v-407cd1fb] {\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/home.png\");\n}\nheader .follow_box[data-v-407cd1fb] {\n    margin-right: auto;\n    margin-left: 30px;\n}\nheader .follow_input[data-v-407cd1fb] {\n    height: 30px;\n}\nheader .follow_button[data-v-407cd1fb] {\n    height: 32px;\n    width: 130px;\n    background: #009999;\n    border: solid 5px #006666;\n    color: #f5f5f5;\n    letter-spacing: 2px;\n    margin-left: 10px;\n}\nheader .me[data-v-407cd1fb] {\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/human.png\");\n}\nheader .settings[data-v-407cd1fb] {\n    margin-right: 15px;\n    margin-left: 15px;\n    height: 32px;\n    width: 32px;\n    background: url(\"/img/settings.png\");\n}\nheader .tubuyaki[data-v-407cd1fb] {\n    height: 32px;\n    width: 100px;\n    background: #009999;\n    border: solid 5px #006666;\n    color: #f5f5f5;\n    letter-spacing: 2px;\n    margin-left: 30px;\n}\n.fade-enter-active[data-v-407cd1fb], .fade-leave-active[data-v-407cd1fb] {\n  transition: opacity 0.3s;\n}\n.fade-enter[data-v-407cd1fb], .fade-leave-to[data-v-407cd1fb] {\n  opacity: 0;\n}\n.tweet-box[data-v-407cd1fb] {\n  position: fixed;\n  left: 0;\n  top: 0;\n  height: 100vh;\n  width: 100%;\n  background: rgba(255, 255, 255, 0.7);\n  z-index: 1;\n}\n.tweet-box-form[data-v-407cd1fb] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  height: auto;\n  width: auto;\n  margin-top: -200px;\n  margin-left: -200px;\n}\n.tweet-box_textarea[data-v-407cd1fb] {\n  width: 400px;\n  height: 300px;\n  padding: 10px;\n  resize: none;\n  box-sizing: border-box;\n  border-radius: 5px;\n  font-size: 15px;\n}\n.tweet-box-buttons[data-v-407cd1fb] {\n  text-align: right;\n}\n.tweet-box_button[data-v-407cd1fb] {\n  height: 32px;\n  width: 100px;\n  background: #009999;\n  border: solid 5px #006666;\n  color: #f5f5f5;\n  letter-spacing: 2px;\n  margin-top: 10px;\n}\n", ""]);
 
 // exports
 
@@ -14097,7 +14112,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.profile-head[data-v-aa5914a2] {\n  background: #2C5379;\n  height: 150px;\n  position: relative;\n}\n.profile-head[data-v-aa5914a2]:after {\n    position: absolute;\n    content: \"\";\n    bottom: -90px;\n    left: 50%;\n    margin-left: -95px;\n    background: url(\"/img/chanu.jpeg\");\n    height: 180px;\n    width: 180px;\n    border: solid 5px #009999;\n}\n.self-introduction[data-v-aa5914a2] {\n  height: 250px;\n  padding-top: 130px;\n  border-bottom: solid 3px #fff;\n  text-align: center;\n}\n.self-introduction_p[data-v-aa5914a2] {\n  letter-spacing: 1px;\n  line-height: 25px;\n}\n.tweet[data-v-aa5914a2] {\n  box-sizing: border-box;\n  width: 800px;\n  height: auto;\n  margin-bottom: 20px;\n  border: solid 5px #009999;\n  transition: all 0.5s;\n  background: #fff;\n  margin: 20px auto;\n}\n.tweet[data-v-aa5914a2]:hover {\n    border: solid 5px #006666;\n    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);\n}\n.tweet-body[data-v-aa5914a2] {\n  padding: 10px;\n  letter-spacing: 2px;\n  height: auto;\n  box-sizing: border-box;\n  line-height: 25px;\n}\n.tweet-body img[data-v-aa5914a2] {\n    display: block;\n    width: 55%;\n    margin: 20px auto;\n    border-radius: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.profile-head[data-v-aa5914a2] {\n  height: auto;\n  position: relative;\n}\n.samune[data-v-aa5914a2] {\n  height: 200px;\n  width: 200px;\n  display: block;\n  border: solid 5px #009999;\n  margin: 30px auto;\n}\n.self-introduction[data-v-aa5914a2] {\n  height: auto;\n  text-align: center;\n  width: 800px;\n  margin: 0 auto;\n  padding: 30px 0px;\n  border-bottom: solid 3px #fff;\n}\n.self-introduction_p[data-v-aa5914a2] {\n  letter-spacing: 1px;\n  line-height: 25px;\n}\n.tweets[data-v-aa5914a2] {\n  padding: 30px 0px;\n}\n.tweet[data-v-aa5914a2] {\n  box-sizing: border-box;\n  width: 800px;\n  height: auto;\n  margin-bottom: 20px;\n  border: solid 5px #009999;\n  transition: all 0.5s;\n  background: #fff;\n  margin: 20px auto;\n}\n.tweet[data-v-aa5914a2]:hover {\n    border: solid 5px #006666;\n    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);\n}\n.tweet-body[data-v-aa5914a2] {\n  padding: 10px;\n  letter-spacing: 2px;\n  height: auto;\n  box-sizing: border-box;\n  line-height: 25px;\n}\n.tweet-body img[data-v-aa5914a2] {\n    display: block;\n    width: 55%;\n    margin: 20px auto;\n    border-radius: 10px;\n}\n", ""]);
 
 // exports
 
@@ -14111,7 +14126,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, "\n.tweets[data-v-c3e4ee7e] {\n  -webkit-column-count: 4;\n  -webkit-column-gap: 30px;\n  -moz-column-count: 4;\n  -moz-column-gap: 30px;\n  column-count: 4;\n  column-gap: 30px;\n}\n.tweet[data-v-c3e4ee7e] {\n  box-sizing: border-box;\n  width: 300px;\n  height: auto;\n  margin-bottom: 30px;\n  border: solid 5px #009999;\n  transition: all 0.5s;\n  background: #fff;\n  break-inside: avoid;\n  word-wrap: break-word;\n}\n.tweet[data-v-c3e4ee7e]:hover {\n    border: solid 5px #006666;\n    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7);\n}\n.tweet-head[data-v-c3e4ee7e] {\n  width: 100%;\n  height: 100px;\n  display: flex;\n  letter-spacing: 2px;\n  background: #2C5379;\n  position: relative;\n}\n.tweet-head_img[data-v-c3e4ee7e] {\n  height: 80px;\n  width: 80px;\n  border: solid 5px #009999;\n  box-sizing: border-box;\n  position: absolute;\n  top: 10px;\n  left: 10px;\n}\n.tweet-head_h2[data-v-c3e4ee7e] {\n  color: #fff;\n  font-weight: 400;\n  font-size: 15px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  left: 100px;\n}\n.tweet-body[data-v-c3e4ee7e] {\n  padding: 10px;\n  letter-spacing: 2px;\n  height: auto;\n  box-sizing: border-box;\n  line-height: 25px;\n}\n.tweet-body img[data-v-c3e4ee7e] {\n    display: block;\n    width: 80%;\n    margin: 10px auto;\n    border-radius: 10px;\n}\n", ""]);
+exports.push([module.i, "\n.tweets[data-v-c3e4ee7e] {\n  -webkit-column-count: 4;\n  -webkit-column-gap: 30px;\n  -moz-column-count: 4;\n  -moz-column-gap: 30px;\n  column-count: 4;\n  column-gap: 30px;\n  padding-top: 30px;\n}\n.tweet[data-v-c3e4ee7e] {\n  box-sizing: border-box;\n  width: 300px;\n  height: auto;\n  margin-bottom: 30px;\n  border: solid 5px #009999;\n  transition: all 0.5s;\n  background: #fff;\n  break-inside: avoid;\n  word-wrap: break-word;\n}\n.tweet[data-v-c3e4ee7e]:hover {\n    border: solid 5px #006666;\n    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.7);\n}\n.tweet-head[data-v-c3e4ee7e] {\n  width: 100%;\n  height: 100px;\n  display: flex;\n  letter-spacing: 2px;\n  background: #2C5379;\n  position: relative;\n}\n.tweet-head_img[data-v-c3e4ee7e] {\n  height: 80px;\n  width: 80px;\n  border: solid 5px #009999;\n  box-sizing: border-box;\n  position: absolute;\n  top: 10px;\n  left: 10px;\n}\n.tweet-head_h2[data-v-c3e4ee7e] {\n  color: #fff;\n  font-weight: 400;\n  font-size: 15px;\n  position: absolute;\n  top: 50%;\n  margin-top: -10px;\n  left: 100px;\n}\n.tweet-body[data-v-c3e4ee7e] {\n  padding: 10px;\n  letter-spacing: 2px;\n  height: auto;\n  box-sizing: border-box;\n  line-height: 25px;\n}\n.tweet-body img[data-v-c3e4ee7e] {\n    display: block;\n    width: 80%;\n    margin: 10px auto;\n    border-radius: 10px;\n}\n", ""]);
 
 // exports
 
@@ -103272,13 +103287,40 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('header', [_c('input', {
-    staticClass: "search",
+  return _c('header', [_c('div', {
+    staticClass: "follow_box"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.follow_id),
+      expression: "follow_id"
+    }],
+    staticClass: "follow_input",
     attrs: {
       "type": "text",
-      "placeholder": "ユーザ検索"
+      "placeholder": "id"
+    },
+    domProps: {
+      "value": (_vm.follow_id)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.follow_id = $event.target.value
+      }
     }
   }), _c('button', {
+    staticClass: "follow_button",
+    on: {
+      "click": _vm.createFollow
+    }
+  }, [_vm._v("フォローする")]), _c('button', {
+    staticClass: "follow_button",
+    on: {
+      "click": _vm.deleteFollow
+    }
+  }, [_vm._v("フォローをはずす")])]), _c('button', {
     staticClass: "tubuyaki",
     on: {
       "click": function($event) {
@@ -103288,7 +103330,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("つぶやく")]), _c('a', {
     staticClass: "me",
     attrs: {
-      "href": "/id"
+      "href": "/me"
     }
   }), _c('a', {
     staticClass: "timeline",
@@ -103355,9 +103397,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('section', [_c('div', {
-    staticClass: "profile-head"
-  }), _vm._m(0), _c('div', {
+  return _c('section', [_vm._m(0), _c('div', {
     staticClass: "container"
   }, [_c('div', {
     staticClass: "tweets"
@@ -103374,10 +103414,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }))])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
+    staticClass: "profile-head"
+  }, [_c('div', {
+    staticClass: "container"
+  }, [_c('img', {
+    staticClass: "samune",
+    attrs: {
+      "src": "/img/chanu.jpeg"
+    }
+  }), _c('div', {
     staticClass: "self-introduction"
   }, [_c('p', {
     staticClass: "self-introduction_p"
-  }), _vm._v("ちゃぬだよ、モック作成なうだよ"), _c('br'), _vm._v("ここは自己紹介文を書くところ")])
+  }), _vm._v("ちゃぬだよ、モック作成なうだよ"), _c('br'), _vm._v("ここは自己紹介文を書くところ")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {

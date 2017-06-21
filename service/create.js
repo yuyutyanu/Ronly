@@ -24,8 +24,14 @@ module.exports = {
                 user_id: req.session.user.id,
             })
             .save()
-            .then(function(savedTask){
+            .then(function (savedTask) {
                 res.send(savedTask)
             })
+    },
+    followUser: (req) => {
+        db.t_Follows.build({
+            follow_id: req.body.follow_id,
+            user_id: req.session.user.id
+        }).save()
     }
 }

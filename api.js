@@ -22,5 +22,13 @@ export default{
                 resolve(obj)
             })
         })
+    },
+    createFollowUser: function ({follow_id}) {
+        return new Promise((resolve, reject) => {
+            axios.post('/follow', {follow_id: follow_id})
+        })
+    },
+    deleteFollowUser: function ({follow_id}) {
+        axios.delete('/follow/'+follow_id)
     }
 }

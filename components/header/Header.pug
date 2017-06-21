@@ -1,7 +1,10 @@
 header
-    input.search(type="text" placeholder="ユーザ検索")
+    .follow_box
+        input.follow_input(type="text" placeholder="id" v-model="follow_id")
+        button.follow_button(@click='createFollow') フォローする
+        button.follow_button(@click='deleteFollow') フォローをはずす
     button.tubuyaki(@click='show = !show') つぶやく
-    a.me(href="/id")
+    a.me(href="/me")
     a.timeline(href='/')
     a.settings(href='/login')
     transition(name='fade')
