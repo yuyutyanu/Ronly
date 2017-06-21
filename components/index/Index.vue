@@ -16,6 +16,7 @@
             var _me = this
             var getTimeLine = function(){
                 api.default.getTimeLine().then(function(timeLine){
+                    _me.items = [];
                     for (var i = 0; i < timeLine.data.length; i++) {
                         _me.items.unshift({
                             id:timeLine.data[i].id,
@@ -29,7 +30,6 @@
             getTimeLine()
 
             bus.$on('tweet', function (Obj) {
-                console.log(Obj)
                 _me.items.unshift({
                     samune: Obj.data.samune,
                     name: Obj.data.name,

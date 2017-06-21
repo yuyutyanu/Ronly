@@ -14023,6 +14023,7 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
         var _me = this;
         var getTimeLine = function () {
             api.default.getTimeLine().then(function (timeLine) {
+                _me.items = [];
                 for (var i = 0; i < timeLine.data.length; i++) {
                     _me.items.unshift({
                         id: timeLine.data[i].id,
@@ -14036,7 +14037,6 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
         getTimeLine();
 
         bus.$on('tweet', function (Obj) {
-            console.log(Obj);
             _me.items.unshift({
                 samune: Obj.data.samune,
                 name: Obj.data.name,
