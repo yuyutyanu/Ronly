@@ -47,11 +47,11 @@ app.post('/tweet', (req, res) => {
     commonFn.create.tweet(req, res)
 })
 
-app.post('/follow', (req) =>{
-    commonFn.create.followUser(req)
+app.post('/follow', (req,res) =>{
+    res.send(commonFn.create.followUser(req))
 })
-app.delete('/follow/:id',(req) =>{
-    commonFn.dele.followUser(req)
+app.delete('/follow/:id',(req,res) =>{
+    res.send(commonFn.dele.followUser(req))
 })
 
 const login = require('./routes/login')

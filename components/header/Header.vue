@@ -12,7 +12,8 @@
                 show: false,
                 text: "",
                 id: "me",
-                follow_id: ""
+                follow_id: "",
+                send_flag: false
             }
         }, methods: {
             tweet: function () {
@@ -21,12 +22,24 @@
                 })
             },
             createFollow: function () {
-                api.default.createFollowUser({follow_id: this.follow_id})
-                bus.$emit('createFollow')
+                if (!this.send_flag) {
+                    this.send_flag = true
+                    api.default.createFollowUser({follow_id: this.follow_id}).then(() => {
+                        bus.$emit('createFollow')
+                        this.follow_id = ""
+                        this.send_flag = false
+                    })
+                }
             },
             deleteFollow: function () {
-                api.default.deleteFollowUser({follow_id: this.follow_id})
-                bus.$emit('deleteFollow')
+                if (!this.send_flag) {
+                    this.send_flag = true
+                    api.default.deleteFollowUser({follow_id: this.follow_id}).then(() => {
+                        bus.$emit('deleteFollow')
+                        this.follow_id = ""
+                        this.send_flag = false
+                    })
+                }
             }
         }
     }

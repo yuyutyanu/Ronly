@@ -25,11 +25,11 @@ module.exports = {
             })
             .save()
             .then(function (savedTask) {
-                commonFn.retrieve.user(req,res).then((data)=>{
+                commonFn.retrieve.user(req, res).then((data) => {
                     var tweet = {
-                            tweet:savedTask.tweet,
-                            name:data.name,
-                            samune:data.samune
+                        tweet: savedTask.tweet,
+                        name: data.name,
+                        samune: data.samune
                     }
 
                     res.send(tweet)
@@ -37,7 +37,7 @@ module.exports = {
             })
     },
     followUser: (req) => {
-        db.t_Follows.build({
+        return db.t_Follows.build({
             follow_id: req.body.follow_id,
             user_id: req.session.user.id
         }).save()

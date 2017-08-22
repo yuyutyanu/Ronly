@@ -1,6 +1,6 @@
 header
     .follow_box
-        input.follow_input(type="text" placeholder="id" v-model="follow_id")
+        input.follow_input(type="text" placeholder="id" v-model.trim="follow_id")
         button.follow_button(@click='createFollow') フォローする
         button.follow_button(@click='deleteFollow') フォローをはずす
     button.tubuyaki(@click='show = !show') つぶやく

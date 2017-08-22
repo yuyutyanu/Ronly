@@ -904,12 +904,10 @@ var axios = __webpack_require__(19);
         });
     },
     createFollowUser: function ({ follow_id }) {
-        return new Promise((resolve, reject) => {
-            axios.post('/follow', { follow_id: follow_id });
-        });
+        return axios.post('/follow', { follow_id: follow_id });
     },
     deleteFollowUser: function ({ follow_id }) {
-        axios.delete('/follow/' + follow_id);
+        return axios.delete('/follow/' + follow_id);
     }
 };
 
@@ -13979,7 +13977,8 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
             show: false,
             text: "",
             id: "me",
-            follow_id: ""
+            follow_id: "",
+            send_flag: false
         };
     }, methods: {
         tweet: function () {
@@ -13988,12 +13987,24 @@ const bus = __WEBPACK_IMPORTED_MODULE_0__bus__["a" /* default */].bus;
             });
         },
         createFollow: function () {
-            api.default.createFollowUser({ follow_id: this.follow_id });
-            bus.$emit('createFollow');
+            if (!this.send_flag) {
+                this.send_flag = true;
+                api.default.createFollowUser({ follow_id: this.follow_id }).then(() => {
+                    bus.$emit('createFollow');
+                    this.follow_id = "";
+                    this.send_flag = false;
+                });
+            }
         },
         deleteFollow: function () {
-            api.default.deleteFollowUser({ follow_id: this.follow_id });
-            bus.$emit('deleteFollow');
+            if (!this.send_flag) {
+                this.send_flag = true;
+                api.default.deleteFollowUser({ follow_id: this.follow_id }).then(() => {
+                    bus.$emit('deleteFollow');
+                    this.follow_id = "";
+                    this.send_flag = false;
+                });
+            }
         }
     }
 };
@@ -103102,7 +103113,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/chanu/Programming/web/sns/components/form/Form.vue"
+Component.options.__file = "/Users/chanu/works/web/sns/components/form/Form.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Form.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -103146,7 +103157,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/chanu/Programming/web/sns/components/header/Header.vue"
+Component.options.__file = "/Users/chanu/works/web/sns/components/header/Header.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Header.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -103190,7 +103201,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/chanu/Programming/web/sns/components/index/Index.vue"
+Component.options.__file = "/Users/chanu/works/web/sns/components/index/Index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -103234,7 +103245,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/chanu/Programming/web/sns/components/profile/Profile.vue"
+Component.options.__file = "/Users/chanu/works/web/sns/components/profile/Profile.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Profile.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -103303,9 +103314,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('input', {
     directives: [{
       name: "model",
-      rawName: "v-model",
+      rawName: "v-model.trim",
       value: (_vm.follow_id),
-      expression: "follow_id"
+      expression: "follow_id",
+      modifiers: {
+        "trim": true
+      }
     }],
     staticClass: "follow_input",
     attrs: {
@@ -103318,7 +103332,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.follow_id = $event.target.value
+        _vm.follow_id = $event.target.value.trim()
+      },
+      "blur": function($event) {
+        _vm.$forceUpdate()
       }
     }
   }), _c('button', {
@@ -103882,7 +103899,7 @@ var Component = __webpack_require__(1)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/chanu/Programming/web/sns/components/App.vue"
+Component.options.__file = "/Users/chanu/works/web/sns/components/App.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
